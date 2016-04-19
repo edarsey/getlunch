@@ -1,4 +1,4 @@
-[ ![Codeship Status for edarsey/Lunch-](https://codeship.com/projects/97a897f0-dcb9-0133-b68c-2e9843291021/status?branch=master)](https://codeship.com/projects/144152)
+
 
 == README
 
