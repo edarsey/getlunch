@@ -1,0 +1,20 @@
+<%= form_for [@user, @lunchtime] do |f| %>
+  <div class="field">
+    <%= f.label :restaurant %>
+    <%= f.text_field :restaurant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :eattime, "Date and Time"  %>
+    <%= f.datetime_local_field :eattime %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Lunchtime" %>
+  </div>
+<% end %>
