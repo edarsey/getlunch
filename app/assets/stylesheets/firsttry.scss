@@ -1,0 +1,48 @@
+$red: #FF2400;
+$yellow: #FFCC00;
+$black: #0a0a0a;
+$white: #fefefe;
+$blue: #000084;
+
+
+body {
+  background: linear-gradient($white);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div .row .column {
+  padding: 2 rem;
+}
+
+#invite-buttons .button {
+  background: $yellow;
+  color: $black;
+  align-items: flex-start;
+}
+
+#editButtons {
+  @extend #invite-buttons;
+}
+
+nav {
+  color: $white;
+  vertical-align: middle;
+  ul {
+    float: left;
+    text-align: center;
+  }
+}
+
+.dropdown-pane {
+  max-width: 400px;
+}
+
+.background-picture {
+  background: image-url('getLunchBackground.jpeg');
+  background-color: scale-color($black, $lightness: +50%);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

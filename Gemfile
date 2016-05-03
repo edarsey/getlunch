@@ -25,6 +25,7 @@ gem 'foundation-rails'
 gem 'faker'
 gem 'selenium-webdriver'
 gem 'devise'
+gem 'StreetAddress', '~> 1.0', '>= 1.0.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -43,6 +44,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails'
+  gem 'poltergeist'
 end
 
 group :development do

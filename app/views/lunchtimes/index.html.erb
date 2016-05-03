@@ -1,0 +1,74 @@
+
+<% if user_signed_in? %>
+  <div class="row column" style="text-align: center; padding-top: 5px;" id="lunchtime">
+    <a href="#newLunchtime" class="large button">New Lunchtime</a>
+    <div id="newLunchtime" class="modalDialog">
+      <div>
+        <a href="#" title="Close" class="close">X</a>
+        <h2>New Lunchtime</h2>
+        <%= render 'lunchtimes/new' %>
+      </div>
+    </div>
+  </div>
+
+  <% @lunchtimes.order(:eattime).each do |lunchtime| %>
+    <div class="row column">
+      <div class"invite-block">
+        <button class="button small-4 columns" type="button" data-toggle="lunchTime_<%= lunchtime.id %>"><%= lunchtime.realtime(lunchtime.eattime) %></button>
+        <% if current_user != lunchtime.user %>
+          <ul class="buttons-groups small-6 columns" id="invite-buttons">
+            <%= button_to "Accept", accept_user_lunchtime_invites_path(current_user, lunchtime), class: "accept button small-3 columns", id: lunchtime.id, style: "margin-right: 4px" %>
+            <%= button_to "Decline", decline_user_lunchtime_invites_path(current_user, lunchtime), class: "decline button small-3 columns", id: lunchtime.id %>
+          </ul>
+        <% end %>
+
+        <div class="dropdown-pane row small-4 columns" id="lunchTime_<%= lunchtime.id %>" data-dropdown data-auto-focus="true">
+            <div class="small-6 columns">
+              <p><%= lunchtime.address %></p>
+              <p><b><%= lunchtime.name %></b></p>
+              <p><%= lunchtime.restaurant %></p>
+            </div>
+
+            <div class="answers small-6 columns">
+              <h6><b>Accepted</b></h6>
+              <div class="accepted">
+                <% lunchtime.accepted_invites.each do |invite| %>
+                  <p><%= invite.name %></p>
+                <% end %>
+              </div>
+              <h6><b>Invited</b></h6>
+              <div class="invited">
+                <% lunchtime.open_invites.each do |invite| %>
+                  <p><%= invite.name %></p>
+                <% end %>
+              </div>
+              <h6><b>Declined</b></h6>
+              <div class="declined">
+                <% lunchtime.declined_invites.each do |no| %>
+                  <p><%= no.name %></p>
+                <% end %>
+              </div>
+            </div>
+            <br>
+        </div>
+      </div>
+
+      <% if current_user == lunchtime.user %>
+        <ul class="buttons-groups round small-6 columns" id="editButtons">
+          <button class="button" type="button" data-toggle="editLunchtime">Edit Lunchtime</button>
+            <div class="dropdown-pane" id="editLunchtime" data-dropdown data-auto-focus="true">
+              <%= render 'lunchtimes/edit' %>
+            </div>
+          <button class="button" type="button" data-toggle="deleteLunchtime">Delete Lunchtime</button>
+            <div class="dropdown-pane" id="deleteLunchtime" data-dropdown data-auto-focus="true">
+              <p>Are you sure?</p>
+              <%= button_to 'Yes', user_lunchtime_path(lunchtime.user, lunchtime), method: :delete %>
+            </div>
+        </ul>
+      <% end %>
+      <br>
+    </div>
+  <% end %>
+<% else %>
+<%= render 'lunchtimes/background' %>
+<% end %>
