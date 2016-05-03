@@ -50,7 +50,6 @@ $(function() { $(document).foundation();
         }
       }
     }).done(function(data) {
-      flash.text(data.flash);
       signUpModal.toggle();
       window.location = "/"
     });
